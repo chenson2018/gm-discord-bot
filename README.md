@@ -8,8 +8,5 @@ Also included is few line script that I run in a crontab to send a daily status 
 
 The following environment variables are used:
 
-discord_webhook
-groupme_id
-afk_channel
-discord_client
+discord_webhook, groupme_id, afk_channel, discord_client, gm_flask_port
 
