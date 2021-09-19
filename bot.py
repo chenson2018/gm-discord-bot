@@ -63,7 +63,7 @@ async def on_message(message):
                     active.append(f"{name} {game}")
 
             if check_deathmatch():
-                dm = "Congratulations, Overwatch has 4v4 tonight!\n\n"
+                dm = "Congratulations, Overwatch currently has 4v4!\n\n"
             else:
                 dm = ''
 
