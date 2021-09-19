@@ -13,6 +13,15 @@ def gm_message(bot_id, text):
 
     return response
 
+def check_deathmatch():
+    try:
+        r = requests.get("https://overwatcharcade.today/api/v1/overwatch/today")
+        json = r.json()
+        modes = json['data']['modes']
+        modes = [mode['players'] for mode in modes]
+        return ('4v4' in modes)
+    except:
+        return False
 
 intents = discord.Intents.default()
 intents.members = True
@@ -53,10 +62,15 @@ async def on_message(message):
 
                     active.append(f"{name} {game}")
 
+            if check_deathmatch():
+                dm = "Congratulations, Overwatch has 4v4 tonight!\n\n"
+            else:
+                dm = ''
+
             if len(active) > 0:
                 active = "\n ".join(active)
                 gm_message(os.environ['groupme_id'],
-                           f"The following are currently in Discord voice channels:\n\n {active}")
+                           f"{dm}The following are currently in Discord voice channels:\n\n {active}")
             else:
                 if 'cron' not in message.content:
                     gm_message(os.environ['groupme_id'], 
